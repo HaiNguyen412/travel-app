@@ -27,7 +27,6 @@ class UserSeeder extends Seeder
             'status' => 1,
             'google_token' => '',
             'role_id' => Role::IT_ADMIN,
-            'department_id' => Department::HCNS,
             'remember_token' => Str::random(10),
         ]);
         User::factory()->count(20)->create();

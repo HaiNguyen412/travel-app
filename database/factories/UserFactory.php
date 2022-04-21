@@ -24,8 +24,6 @@ class UserFactory extends Factory
             'status' => true,
             'google_token' => Str::random(10),
             'role_id' => random_int(1, 3),
-            'department_id' => random_int(1, 4),
-            'position_id' => random_int(1, 4),
             'remember_token' => Str::random(10),
         ];
     }

@@ -90,7 +90,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
-    
+
     protected static function boot()
     {
         parent::boot();
@@ -120,8 +120,6 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'avatar',
         'google_token',
         'role_id',
-        'department_id',
-        'position_id',
         'created_by',
         'updated_by',
         'created_at',
@@ -171,30 +169,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         $this->notify(new ResetPasswordNotification($url));
     }
 
-    public function position()
-    {
-        return $this->belongsTo(Position::class, 'position_id', 'id');
-    }
-
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
-    }
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class, 'department_id', 'id');
-    }
-
-    public function category()
-    {
-        return $this->hasMany(Category::class, 'assignee', 'id');
-    }
-
-    public function requests()
-    {
-        return $this->belongsToMany(Request::class, 'comments', 'created_by', 'request_id')
-                    ->withPivot('content')->withTimestamps();
     }
 
     public function scopeAdmin($query)
