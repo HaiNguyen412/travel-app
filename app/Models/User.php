@@ -112,21 +112,23 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'code_login',
+        'first_name',
+        'last_name',
         'status',
-        'avatar',
-        'google_token',
-        'role_id',
-        'created_by',
-        'updated_by',
+        'address',
+        'phone_number',
+        'apple_id',
+        'facebook_id',
+        'google_id',
+        'area_id',
+        'country_id',
+        'province_id',
+        'city_id',
+        'district_id',
+        'email_verified_at',
         'created_at',
         'updated_at',
         'deleted_at',
-        'email_verified_at',
-        'remember_token',
     ];
 
     /**
@@ -134,10 +136,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast.
@@ -156,26 +155,5 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class, 'role_id', 'id');
-    }
-
-    public function sendPasswordResetNotification($token)
-    {
-        $url = route('reset_password') . '/' . $token;
-        $this->notify(new ResetPasswordNotification($url));
-    }
-
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = Hash::make($value);
-    }
-
-    public function scopeAdmin($query)
-    {
-        return $query->where('role_id', EnumsRole::IT_ADMIN);
     }
 }
