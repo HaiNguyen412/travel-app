@@ -27,6 +27,14 @@ class AuthController extends Controller
         $this->middleware(['jwt.auth'], ['except' => ['login', 'loginSocialHandle', 'loginWithGoogle']]);
     }
 
+
+    /**
+     * @OA\Get(
+     *     path="/api/v1/auth/login",
+     *     description="Login",
+     *     @OA\Response(response="default", description="Login")
+     * )
+     */
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -126,7 +134,7 @@ class AuthController extends Controller
             return Response::clientError(__('auth.status'));
         }
         $token = auth()->login($getUser);
-        
+
         return $token;
     }
 }
