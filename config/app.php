@@ -179,6 +179,9 @@ return [
         App\Providers\ResponseMacroServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+
+        //Swagger
+        L5Swagger\L5SwaggerServiceProvider::class,
     ],
 
     /*
