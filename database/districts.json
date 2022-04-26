@@ -1,0 +1,152 @@
+[
+    {
+        "code": "001",
+        "name": "Quận Ba Đình",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "005",
+        "name": "Quận Cầu Giấy",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "006",
+        "name": "Quận Đống Đa",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "007",
+        "name": "Quận Hai Bà Trưng",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "002",
+        "name": "Quận Hoàn Kiếm",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "008",
+        "name": "Quận Hoàng Mai",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "003",
+        "name": "Quận Tây Hồ",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "009",
+        "name": "Quận Thanh Xuân",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "273",
+        "name": "Huyện Đan Phượng",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "250",
+        "name": "Huyện Mê Linh",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "272",
+        "name": "Huyện Phúc Thọ",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "021",
+        "name": "Quận Bắc Từ Liêm",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "268",
+        "name": "Quận Hà Đông",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "004",
+        "name": "Quận Long Biên",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "019",
+        "name": "Quận Nam Từ Liêm",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "271",
+        "name": "Huyện Ba Vì",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "277",
+        "name": "Huyện Chương Mỹ",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "017",
+        "name": "Huyện Đông Anh",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "018",
+        "name": "Huyện Gia Lâm",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "274",
+        "name": "Huyện Hoài Đức",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "282",
+        "name": "Huyện Mỹ Đức",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "280",
+        "name": "Huyện Phú Xuyên",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "275",
+        "name": "Huyện Quốc Oai",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "016",
+        "name": "Huyện Sóc Sơn",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "276",
+        "name": "Huyện Thạch Thất",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "278",
+        "name": "Huyện Thanh Oai",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "020",
+        "name": "Huyện Thanh Trì",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "279",
+        "name": "Huyện Thường Tín",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "281",
+        "name": "Huyện Ứng Hòa",
+        "province": "Thành phố Hà Nội"
+    },
+    {
+        "code": "269",
+        "name": "Thị xã Sơn Tây",
+        "province": "Thành phố Hà Nội"
+    }
+]
