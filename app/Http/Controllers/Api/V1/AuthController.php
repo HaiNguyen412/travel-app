@@ -95,7 +95,6 @@ class AuthController extends Controller
     public function loginWithGoogle($user)
     {
         $getUser = User::where([
-            'google_token' => $user->id,
             'email' => $user->email,
         ])->first();
         if (!$getUser) {
@@ -111,7 +110,6 @@ class AuthController extends Controller
                             'name' => $user->name,
                             'status' => 1,
                             'avatar' => $user->avatar,
-                            'google_token' => $user->id,
                             'role_id' => 2,
                             'email_verified_at' => now(),
                         ]);
@@ -122,7 +120,7 @@ class AuthController extends Controller
                     return Response::serverError(__('exception.server_error'));
                 }
             } else {
-                $getUser = $getUserByEmail->fill(['google_token' => $user->id]);
+//                $getUser = $getUserByEmail->fill(['google_token' => $user->id]);
                 $getUser->save();
             }
         }

@@ -18,7 +18,6 @@ class UserResource extends BaseResource
             'id' => $this->id,
             'email' => $this->email,
             'name' => $this->name,
-            'code_login' => $this->code_login,
             'google_token' => $this->google_token,
             'status' => $this->status,
             'avatar' => str_starts_with($this->avatar, 'http') ? $this->avatar

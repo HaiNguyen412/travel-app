@@ -23,4 +23,9 @@ class BlogSubject extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
+    }
 }

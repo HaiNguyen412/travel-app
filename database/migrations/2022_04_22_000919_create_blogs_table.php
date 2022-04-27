@@ -18,7 +18,11 @@ class CreateBlogsTable extends Migration
             $table->string('name');
             $table->string('content');
             $table->unsignedBigInteger('author_id')->nullable();
-            $table->foreign('author_id')->references('user_id')->on('user_trackings');
+            $table->foreign('author_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('blog_subject_id')->nullable();
+            $table->foreign('blog_subject_id')->references('id')->on('blog_subjects');
+
             $table->boolean('status')->default(1);
             $table->string('like_total');
             $table->string('dislike_total');
