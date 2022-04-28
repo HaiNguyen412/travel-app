@@ -17,7 +17,7 @@ Route::get('/', function () {
     return;
 });
 
-Route::domain(config('client.client_url'))->group( function () {
-    Route::get('/reset-password/token')->name('reset_password');
-    Route::get('/requests')->name('request_detail');
-});
+//Route::domain(config('client.client_url'))->group( function () {
+//    Route::get('/reset-password/token')->name('reset_password');
+//    Route::get('/requests')->name('request_detail');
+//});
