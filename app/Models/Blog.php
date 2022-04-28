@@ -22,4 +22,41 @@ class Blog extends Model
         'updated_at',
         'deleted_at',
     ];
+
+
+    // RELATIONs
+
+    /**
+     * Get the post's image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    /**
+     * Get all of the tags for the post.
+     */
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    // MUTATORs
+
+    /**
+     * Get the user's most recent image.
+     */
+    public function latestImage()
+    {
+        return $this->morphOne(Image::class, 'imageable')->latestOfMany();
+    }
+
+//    /**
+//     * Get the user's most popular image.
+//     */
+//    public function bestImage()
+//    {
+//        return $this->morphOne(Image::class, 'imageable')->ofMany('likes', 'max');
+//    }
 }

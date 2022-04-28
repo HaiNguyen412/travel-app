@@ -13,4 +13,12 @@ class Image extends Model
     protected $fillable = [
         'url', 'path'
     ];
+
+    /**
+     * Get the parent imageable model (user or post for example).
+     */
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }
