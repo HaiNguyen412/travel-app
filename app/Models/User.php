@@ -86,7 +86,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereVerified($value)
  * @mixin \Eloquent
  */
-
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
@@ -97,15 +96,16 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 
         $userId = Auth::user() ? Auth::user()->id : 1;
 
-        static::creating(function ($model) use ($userId) {
-            $model->created_by = $userId;
-            $model->updated_by = $userId;
-        });
-
-        static::updating(function ($model) use ($userId) {
-            $model->updated_by = $userId;
-        });
+//        static::creating(function ($model) use ($userId) {
+//            $model->created_by = $userId;
+//            $model->updated_by = $userId;
+//        });
+//
+//        static::updating(function ($model) use ($userId) {
+//            $model->updated_by = $userId;
+//        });
     }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -129,6 +129,9 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'created_at',
         'updated_at',
         'deleted_at',
+
+        'email',
+        'password',
     ];
 
     /**

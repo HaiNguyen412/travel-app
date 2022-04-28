@@ -18,11 +18,15 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->boolean('status')->default(1);
-            $table->string('address');
-            $table->string('phone_number');
-            $table->string('apple_id');
-            $table->string('facebook_id');
-            $table->string('google_id');
+            $table->string('address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('apple_id')->nullable();
+            $table->string('facebook_id')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('email')->nullable();
+            $table->string('password');
+            $table->string('remember_token')->nullable();
+
             $table->unsignedBigInteger('area_id')->nullable();
             $table->foreign('area_id')->references('id')->on('areas');
             $table->unsignedBigInteger('country_id')->nullable();

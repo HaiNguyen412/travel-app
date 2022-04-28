@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Enums\Department;
 use App\Models\Enums\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,14 +18,13 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'admin',
+            'first_name' => 'Nguyen Van',
+            'last_name' => 'admin',
             'email' => 'admin@gmail.com',
             'email_verified_at' => Carbon::now(),
             'password' => '123321abc',
-            'code_login' => Str::random(5),
             'status' => 1,
-            'google_token' => '',
-            'role_id' => Role::IT_ADMIN,
+//            'role_id' => Role::IT_ADMIN,
             'remember_token' => Str::random(10),
         ]);
         User::factory()->count(20)->create();

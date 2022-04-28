@@ -17,10 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DistrictSeeder::class,
             ProvinceSeeder::class,
-            CountrySeeder::class
+            CountrySeeder::class,
             // AreaSeeder::class,
             // RoleSeeder::class,
-            // UserSeeder::class,
+            UserSeeder::class,
+            CategorySeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }
