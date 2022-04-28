@@ -16,6 +16,7 @@ Route::group([
         'as' => 'images.',
     ], function () {
         Route::post('/single', 'ImageController@upload')->name('upload');
+        Route::delete('/{id}', 'ImageController@delete')->name('delete');
 //        Route::post('/multi', 'ImageController@upload')->name('upload_multiple');
     });
 });

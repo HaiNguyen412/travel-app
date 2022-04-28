@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Common\ImageUploadRequest;
+use App\Http\Requests\Common\Image\ImageDeleteRequest;
+use App\Http\Requests\Common\Image\ImageUploadRequest;
+use App\Models\Image;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -43,6 +47,23 @@ class ImageController extends Controller
 
             return \Response::showSuccess($image);
         } catch (\Exception $e) {
+            return \Response::serverError();
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $image = Image::query()->findOrFail($id);
+            Storage::delete($image->path);
+            $image->delete();
+
+            return \Response::deleteSuccess();
+        } catch (\Exception $e) {
+
+            return \Response::serverError();
+        } catch (\Throwable $e) {
+
             return \Response::serverError();
         }
     }

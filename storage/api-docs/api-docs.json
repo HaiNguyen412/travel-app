@@ -5,6 +5,17 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/images/single/login": {
+            "post": {
+                "description": "Upload single image",
+                "operationId": "75c6b9419c020abda1fb5143aeb47447",
+                "responses": {
+                    "default": {
+                        "description": "Upload single image"
+                    }
+                }
+            }
+        },
         "/api/v1/auth/login": {
             "get": {
                 "description": "Login",
