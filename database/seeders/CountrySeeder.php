@@ -14,7 +14,11 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        Country::create(['country_id' => 84, 'name' => 'Viet Nam']);
-        Country::create(['country_id' => 85, 'name' => 'Thai Lan']);
+        $coutry = Country::query()->create([
+            'name' => 'Seeking Tour Guide',
+            'code' => 'seeking_tour_guide',
+            'description' => $this->faker->realText(50),
+        ]);
+        
     }
 }
