@@ -4,9 +4,6 @@ use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\NewPasswordController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\EmailVerificationController;
-use Illuminate\Http\Request;
-use App\Models\User;
 
 Route::group([
     'namespace' => 'Api\V1',
@@ -31,9 +28,8 @@ Route::group([
     Route::post('/login/{provider}/process', 'AuthController@loginSocialHandle')->name('login_social_handle');
     Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
     Route::post('reset-password', [NewPasswordController::class, 'reset']);
-
     Route::post('/editprofile',[UserController::class,'updateProfile']);
-
+    Route::apiResource('categories', 'CategoryController');
 });
 
 

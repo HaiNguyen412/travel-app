@@ -15,14 +15,10 @@ class CategoryResource extends BaseResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'assignee' => $this->whenLoaded('user', function () {
-                return UserResource::make(
-                    $this->user
-                );
-            }),
-            'status' => $this->status,
+            'id' =>$this->id,
+            'description' =>$this->description,
+            'code' => $this->code,
+            'name' =>$this->name,
         ];
     }
 }
