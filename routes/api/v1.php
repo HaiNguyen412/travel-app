@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\BlogController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\NewPasswordController;
 use App\Http\Controllers\Api\V1\UserController;
@@ -30,6 +31,11 @@ Route::group([
     Route::post('reset-password', [NewPasswordController::class, 'reset']);
     Route::post('/editprofile',[UserController::class,'updateProfile']);
     Route::apiResource('categories', 'CategoryController');
+    Route::apiResource('blogs', 'BlogController');
+    Route::post('/like/{id}',[BlogController::class,'like']);
+    Route::post('/dislike/{id}',[BlogController::class,'dislike']);
+
+
 });
 
 
