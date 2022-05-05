@@ -8,8 +8,8 @@ interface IBlogService
 {
     public function index(Request $request);
     public function create(Request $request);
-    public function update(Request $request, $id);
+    public function update(int $id, Request $request);
     public function delete($id);
-    public function like(Request $request, $id);
-    public function dislike(Request $request, $id);
+    public function like(Request $request);
+    public function dislike(Request $request);
 }

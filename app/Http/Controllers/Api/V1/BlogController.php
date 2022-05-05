@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Common\Blog\BlogCreateRequest;
+use App\Http\Requests\Common\Blog\BlogUpdateRequest;
 use App\Http\Resources\BlogResource;
 use App\Services\IServices\IBlogService;
 use Illuminate\Http\Request;
@@ -24,18 +26,13 @@ class BlogController extends Controller
         );
     }
 
-    public function store(Request $request)
-    {
-        return Response::storeSuccess(
-            $this->blogService->create($request)
-        );
+    public function store(BlogCreateRequest $request) {
+        return Response::storeSuccess($this->blogService->create($request));
     }
 
-    public function update(Request $request, $id)
+    public function update(int $id, BlogUpdateRequest $request)
     {
-        return Response::updateSuccess(
-            $this->blogService->update($request, $id)
-        );
+        return Response::updateSuccess($this->blogService->update($id, $request));
     }
 
     public function destroy($id)
@@ -45,17 +42,17 @@ class BlogController extends Controller
         );
     }
 
-    public function like(Request $request, $id)
+    public function like(Request $request)
     {
         return Response::updateSuccess(
-            $this->blogService->like($request, $id)
+            $this->blogService->like($request)
         );
     }
 
-    public function dislike(Request $request, $id)
+    public function dislike(Request $request)
     {
         return Response::updateSuccess(
-            $this->blogService->dislike($request, $id)
+            $this->blogService->dislike($request)
         );
     }
 }
