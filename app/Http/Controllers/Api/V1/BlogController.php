@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Response;
 class BlogController extends Controller
 {
     protected $blogService;
+
     public function __construct(IBlogService $blogService)
     {
         return $this->blogService = $blogService;
@@ -18,29 +19,43 @@ class BlogController extends Controller
 
     public function index(Request $request)
     {
-        return BlogResource::collection($this->blogService->index($request));
+        return BlogResource::collection(
+            $this->blogService->index($request)
+        );
     }
 
-    public function store(Request $request) {
-        return Response::storeSuccess($this->blogService->create($request));
+    public function store(Request $request)
+    {
+        return Response::storeSuccess(
+            $this->blogService->create($request)
+        );
     }
 
     public function update(Request $request, $id)
     {
-        return Response::updateSuccess($this->blogService->update($request, $id));
+        return Response::updateSuccess(
+            $this->blogService->update($request, $id)
+        );
     }
 
     public function destroy($id)
     {
-        return Response::deleteSuccess($this->blogService->delete($id));
+        return Response::deleteSuccess(
+            $this->blogService->delete($id)
+        );
     }
+
     public function like(Request $request, $id)
     {
-        return $this->blogService->like($request, $id);
+        return Response::updateSuccess(
+            $this->blogService->like($request, $id)
+        );
     }
 
     public function dislike(Request $request, $id)
     {
-        return $this->blogService->dislike($request, $id);
+        return Response::updateSuccess(
+            $this->blogService->dislike($request, $id)
+        );
     }
 }
