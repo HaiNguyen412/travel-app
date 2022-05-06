@@ -58,82 +58,86 @@ class AuthController extends Controller
         } catch (JWTException $e) {
             return Response::serverError(__('exception.server_error'));
         }
-        return Response::jwtAuth($token, Config::get('jwt.ttl'));
+        return Response::showSuccess([
+            'user' => auth()->user(),
+            'token' => $token,
+            'expire' => Config::get('jwt.ttl')
+        ]);
     }
 
-        public function me(Request $request)
-        {
-            return Response::showSuccess(
-                JWTAuth::toUser($request->token)->load(['department', 'position', 'role'])
-            );
-        }
-        public function logout()
-        {
-            return Response::showSuccess(JWTAuth::invalidate(JWTAuth::getToken()));
-        }
+    public function me(Request $request)
+    {
+        return Response::showSuccess(
+            JWTAuth::toUser($request->token)
+        );
+    }
+    public function logout()
+    {
+        return Response::showSuccess(auth()->logout());
+    }
 
-        public function loginSocialHandle($provider, Request $request)
-        {
-            $token = $request->token;
-            try {
-                // dd($provider);
-                $user = Socialite::driver($provider)->userFromToken($token);
-                // dd($user);
-            } catch (Exception $e) {
-                return Response::clientError(__('auth.google_access'));
-            }
+    //     public function loginSocialHandle($provider, Request $request)
+    //     {
+    //         $token = $request->token;
+    //         try {
+    //             // dd($provider);
+    //             $user = Socialite::driver($provider)->userFromToken($token);
+    //             // dd($user);
+    //         } catch (Exception $e) {
+    //             return Response::clientError(__('auth.google_access'));
+    //         }
 
-            if ($provider === 'google') {
-                $token = $this->loginWithGoogle($user);
-            }
-            if (!is_string($token)) {
-                return $token;
-            }
+    //         if ($provider === 'google') {
+    //             $token = $this->loginWithGoogle($user);
+    //         }
+    //         if (!is_string($token)) {
+    //             return $token;
+    //         }
 
-            return Response::jwtAuth($token, Config::get('jwt.ttl'));
-        }
+    //         return Response::jwtAuth($token, Config::get('jwt.ttl'));
+    //     }
 
-        public function loginWithGoogle($user)
-        {
-            $getUser = User::where([
-                'email' => $user->email,
-            ])->first();
-            if (!$getUser) {
-                $getUserByEmail = User::where('email', $user->email)->first();
-                if (!$getUserByEmail) {
-                    try {
-                        $userEmailArray = explode('@', $user->email);
-                        if (strtolower($userEmailArray[1]) == 'hblab.vn') {
-                            $getUser = User::create([
-                                'email' => $user->email,
-                                'password' => Str::random(10),
-                                'code_login' => $userEmailArray[0],
-                                'name' => $user->name,
-                                'status' => 1,
-                                'avatar' => $user->avatar,
-                                'role_id' => 2,
-                                'email_verified_at' => now(),
-                            ]);
-                        } else {
-                            return Response::clientError(__('auth.google_permission'));
-                        }
-                    } catch (Exception $e) {
-                        return Response::serverError(__('exception.server_error'));
-                    }
-                } else {
-    //                $getUser = $getUserByEmail->fill(['google_token' => $user->id]);
-                    $getUser->save();
-                }
-            }
-            if (!$getUser->email_verified_at) {
-                $getUser->fill(['email_verified_at' => now()]);
-                $getUser->save();
-            }
-            if (!$getUser->status) {
-                return Response::clientError(__('auth.status'));
-            }
-            $token = auth()->login($getUser);
+    //     public function loginWithGoogle($user)
+    //     {
+    //         $getUser = User::where([
+    //             'email' => $user->email,
+    //         ])->first();
+    //         if (!$getUser) {
+    //             $getUserByEmail = User::where('email', $user->email)->first();
+    //             if (!$getUserByEmail) {
+    //                 try {
+    //                     $userEmailArray = explode('@', $user->email);
+    //                     if (strtolower($userEmailArray[1]) == 'hblab.vn') {
+    //                         $getUser = User::create([
+    //                             'email' => $user->email,
+    //                             'password' => Str::random(10),
+    //                             'code_login' => $userEmailArray[0],
+    //                             'name' => $user->name,
+    //                             'status' => 1,
+    //                             'avatar' => $user->avatar,
+    //                             'role_id' => 2,
+    //                             'email_verified_at' => now(),
+    //                         ]);
+    //                     } else {
+    //                         return Response::clientError(__('auth.google_permission'));
+    //                     }
+    //                 } catch (Exception $e) {
+    //                     return Response::serverError(__('exception.server_error'));
+    //                 }
+    //             } else {
+    // //                $getUser = $getUserByEmail->fill(['google_token' => $user->id]);
+    //                 $getUser->save();
+    //             }
+    //         }
+    //         if (!$getUser->email_verified_at) {
+    //             $getUser->fill(['email_verified_at' => now()]);
+    //             $getUser->save();
+    //         }
+    //         if (!$getUser->status) {
+    //             return Response::clientError(__('auth.status'));
+    //         }
+    //         $token = auth()->login($getUser);
 
-            return $token;
-        }
+    //         return $token;
+    //     }
 }
