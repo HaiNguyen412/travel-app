@@ -16,7 +16,7 @@ use Hash;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-use Request;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -24,9 +24,9 @@ class UserController extends Controller
 
     public function __construct(IUserService $userService)
     {
-        $this->middleware(['jwt.auth']);
+        // $this->middleware(['jwt.auth']);
         $this->userService = $userService;
-        $this->authorizeResource(User::class, 'user');
+        // $this->authorizeResource(User::class, 'user');
     }
 
     /**
@@ -34,10 +34,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(BaseIndexRequest $request)
+    public function index(Request $request)
     {
         return UserResource::collection(
-            $this->userService->paginate($request)
+            $this->userService->index($request)
         );
     }
 

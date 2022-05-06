@@ -14,15 +14,16 @@ use Illuminate\Support\Facades\Response;
 
 class UserService extends AbstractService implements IUserService
 {
-
-    public function __construct(IUserRepository $userRepository)
+    public function __construct(User $repository)
     {
-        parent::__construct($userRepository);
+        $this->repository = $repository;
     }
 
-    public function paginate(Request $request)
+    public function index(Request $request, $limit = 10)
     {
-        return $this->repository->paginate($request);
+        return $this->query()->when($request->name, function ($query, $name) {
+            return $query->search('name', $name);
+        })->paginate($limit);
     }
 
     public function updateAvatar(Request $request)
@@ -30,7 +31,7 @@ class UserService extends AbstractService implements IUserService
         $id = Auth::user()->id;
         $request->file('avatar')->store('public/avatars');
         $filename = $request->file('avatar')->hashName();
-        $avatar = 'storage/avatars/'.$filename;
+        $avatar = 'storage/avatars/' . $filename;
         // dd($avatar);
         $data['avatar'] = $avatar;
         return $this->repository->update($id, $data);
