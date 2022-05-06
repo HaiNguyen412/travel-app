@@ -15,30 +15,25 @@ class UserResource extends BaseResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
             'email' => $this->email,
-            'name' => $this->name,
-            'google_token' => $this->google_token,
+            'password' => $this->password,
             'status' => $this->status,
-            'avatar' => str_starts_with($this->avatar, 'http') ? $this->avatar
-                        : config('app.url').'/'.$this->avatar,
-            'email_verified_at' => $this->email_verified_at,
-            'role' => $this->whenLoaded('role', function () {
-                return RoleResource::make(
-                    $this->role
-                );
-            }),
-            'position' => $this->whenLoaded('position', function () {
-                return PositionResource::make(
-                    $this->position
-                );
-            }),
-            'department' => $this->whenLoaded('department', function () {
-                return DepartmentResource::make(
-                    $this->department
-                );
-            }),
-            'role_id' => $this->role_id,
+            'address' => $this->address,
+            'phone_number' => $this->phone_number,
+            'apple_id' => $this->apple_id,
+            'facebook_id' => $this->facebook_id,
+            'google_id' => $this->google_id,
+            'area_id' => $this->area_id,
+            'country_id' => $this->country_id,
+            'province_id' => $this->province_id,
+            'city_id' => $this->city_id,
+            'district_id' => $this->district_id,
+            'remember_token' => $this->remember_token,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'delete_at' => $this->delete_at,
         ];
     }
 

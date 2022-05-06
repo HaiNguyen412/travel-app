@@ -7,7 +7,7 @@ use App\Models\User;
 
 interface IUserService
 {
-    public function paginate(Request $request);
+    public function index(Request $request);
     public function updateAvatar(Request $request);
     public function get(Request $request);
 }
